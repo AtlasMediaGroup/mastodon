@@ -9,7 +9,7 @@ module Mastodon
     end
 
     def minor
-      2
+      3
     end
 
     def patch
@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def default_prerelease
-      ''
+      '0.dev.0'
     end
 
     def prerelease
