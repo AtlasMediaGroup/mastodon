@@ -104,6 +104,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def max_toot_chars 
-    ENV['MAX_POST_LENGTH']
+    ENV.fetch('SSO_ACCOUNT_SIGN_UP')
  end
 end

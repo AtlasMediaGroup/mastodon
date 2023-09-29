@@ -100,7 +100,7 @@ class ComposeForm extends ImmutablePureComponent {
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > ENV['MAX_POST_LENGTH'] || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > ENV.fetch('MAX_POST_LENGTH') || (isOnlyWhitespace && !anyMedia));
   };
 
   handleSubmit = (e) => {
@@ -297,7 +297,7 @@ class ComposeForm extends ImmutablePureComponent {
             </div>
 
             <div className='character-counter__wrapper'>
-              <CharacterCounter max={ENV['MAX_POST_LENGTH']} text={this.getFulltextForCharacterCounting()} />
+              <CharacterCounter max={ENV.fetch('MAX_POST_LENGTH')} text={this.getFulltextForCharacterCounting()} />
             </div>
           </div>
         </div>
