@@ -104,6 +104,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def max_post_chars 
-    ENV.fetch('MAX_POSTS_LENGTH')
+    ENV.fetch('MAX_POST_LENGTH')
  end
 end
