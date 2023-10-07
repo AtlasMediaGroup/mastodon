@@ -25,6 +25,7 @@ import UploadButtonContainer from '../containers/upload_button_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { countableText } from '../util/counter';
+import { maxChars } from '../../../initial_state';
 
 import CharacterCounter from './character_counter';
 
@@ -100,7 +101,7 @@ class ComposeForm extends ImmutablePureComponent {
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > ENV.fetch('MAX_POST_LENGTH') || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (isOnlyWhitespace && !anyMedia));
   };
 
   handleSubmit = (e) => {
@@ -297,7 +298,7 @@ class ComposeForm extends ImmutablePureComponent {
             </div>
 
             <div className='character-counter__wrapper'>
-              <CharacterCounter max={ENV.fetch('MAX_POST_LENGTH')} text={this.getFulltextForCharacterCounting()} />
+              <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
             </div>
           </div>
         </div>
