@@ -16,6 +16,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   has_one :contact, serializer: ContactSerializer
   has_many :rules, serializer: REST::RuleSerializer
 
+  def max_post_chars 
+    StatusLengthValidator::MAX_CHARS
+ end
+ 
   def thumbnail
     if object.thumbnail
       {
@@ -103,7 +107,5 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_images: true)
   end
 
-  def max_post_chars 
-    ENV.fetch('MAX_POST_LENGTH')
- end
+  
 end
