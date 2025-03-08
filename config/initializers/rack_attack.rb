@@ -66,7 +66,7 @@ class Rack::Attack
     IpBlock.blocked?(req.remote_ip)
   end
 
-  throttle('throttle_authenticated_api', limit: 1_500, period: 5.minutes) do |req|
+  throttle('throttle_authenticated_api', limit: 3000, period: 5.minutes) do |req|
     req.authenticated_user_id if req.api_request?
   end
 
@@ -94,7 +94,7 @@ class Rack::Attack
     req.authenticated_user_id if req.paging_request?
   end
 
-  throttle('throttle_unauthenticated_paging', limit: 300, period: 15.minutes) do |req|
+  throttle('throttle_unauthenticated_paging', limit: 600, period: 15.minutes) do |req|
     req.throttleable_remote_ip if req.paging_request? && req.unauthenticated?
   end
 
