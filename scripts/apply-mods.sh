@@ -3,7 +3,7 @@
 set -euxo pipefail
 shopt -s expand_aliases
 
-MAX_STATUS_CHARS=500 # this is currently unchanged on stable-4.3
+# MAX_STATUS_CHARS=500 # this is currently unchanged on stable-4.3
 MAX_FEED_ITEMS=1600
 
 # Media Attachments:
@@ -28,7 +28,8 @@ if [ "$currentDirectory" = "scripts" ]; then
 fi
 
 # Change status max-length setting:
-sed -i "s/^\(.*MAX_CHARS = \).*/\1$MAX_STATUS_CHARS/" app/validators/status_length_validator.rb
+# Controlled via environment variable:
+# sed -i "s/^\(.*MAX_CHARS = \).*/\1$MAX_STATUS_CHARS/" app/validators/status_length_validator.rb
 
 # Change feed settings:
 sed -i "s/^\(.*MAX_ITEMS = \).*/\1$MAX_FEED_ITEMS/" app/lib/feed_manager.rb
